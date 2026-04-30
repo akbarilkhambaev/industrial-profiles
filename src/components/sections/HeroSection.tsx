@@ -1,3 +1,5 @@
+'use client';
+
 import { motion } from "framer-motion";
 import { useLang } from "@/lib/i18n";
 import heroImage from "@/assets/hero-profile.jpg";
@@ -64,7 +66,7 @@ const HeroSection = () => {
           >
             <div className="relative">
               <motion.img
-                src={heroImage}
+                src={heroImage.src}
                 alt="Premium aluminum extrusion profile"
                 className="w-full max-w-lg rounded-lg glow-blue"
                 animate={{ y: [0, -12, 0] }}
@@ -80,3 +82,4 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
+

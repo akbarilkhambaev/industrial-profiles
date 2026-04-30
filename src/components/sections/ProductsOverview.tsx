@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+'use client';
+
+import Link from "next/link";
 import { useLang } from "@/lib/i18n";
 import { products } from "@/lib/products";
 import AnimatedSection from "@/components/AnimatedSection";
@@ -31,7 +33,7 @@ const ProductsOverview = () => {
                   <h3 className="font-heading font-semibold text-foreground mb-1">{t.products.categories[i]?.title}</h3>
                   <p className="text-sm text-muted-foreground mb-4 line-clamp-2">{t.products.categories[i]?.description}</p>
                   <Link
-                    to={`/products/${product.id}`}
+                    href={`/products/${product.id}`}
                     className="inline-flex text-sm font-heading font-semibold text-primary hover:text-primary/80 transition-colors"
                   >
                     {t.products.viewDetails} →

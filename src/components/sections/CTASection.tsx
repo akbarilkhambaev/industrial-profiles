@@ -1,3 +1,5 @@
+'use client';
+
 import { useLang } from "@/lib/i18n";
 import AnimatedSection from "@/components/AnimatedSection";
 
@@ -36,3 +38,4 @@ const CTASection = () => {
 };
 
 export default CTASection;
+

@@ -15,7 +15,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 220 20% 10%;
 
-    --primary: 210 80% 50%;
+    --primary: 0 75% 60%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 220 10% 92%;
@@ -32,7 +32,7 @@
 
     --border: 220 13% 87%;
     --input: 220 13% 87%;
-    --ring: 210 80% 50%;
+    --ring: 0 75% 60%;
 
     --radius: 0.5rem;
 
@@ -44,7 +44,7 @@
     --steel-light: 220 10% 92%;
     --metallic-start: 220 8% 82%;
     --metallic-end: 220 8% 92%;
-    --blue-glow: 210 100% 60%;
+    --blue-glow: 0 75% 60%;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -63,7 +63,7 @@
     --card-foreground: 220 10% 92%;
     --popover: 220 15% 12%;
     --popover-foreground: 220 10% 92%;
-    --primary: 210 80% 55%;
+    --primary: 0 75% 60%;
     --primary-foreground: 0 0% 100%;
     --secondary: 220 15% 18%;
     --secondary-foreground: 220 10% 92%;
@@ -75,7 +75,7 @@
     --destructive-foreground: 210 40% 98%;
     --border: 220 15% 20%;
     --input: 220 15% 20%;
-    --ring: 210 80% 55%;
+    --ring: 0 75% 60%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -96,7 +96,12 @@
     @apply bg-background text-foreground font-body antialiased;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-heading;
   }
 }
@@ -111,11 +116,20 @@
   }
 
   .gradient-metallic {
-    background: linear-gradient(135deg, hsl(var(--metallic-start)), hsl(var(--metallic-end)));
+    background: linear-gradient(
+      135deg,
+      hsl(var(--metallic-start)),
+      hsl(var(--metallic-end))
+    );
   }
 
   .gradient-steel-text {
-    background: linear-gradient(135deg, hsl(220 8% 65%), hsl(220 8% 90%), hsl(220 8% 65%));
+    background: linear-gradient(
+      135deg,
+      hsl(220 8% 65%),
+      hsl(220 8% 90%),
+      hsl(220 8% 65%)
+    );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -130,9 +144,9 @@
   }
 
   .blueprint-grid {
-    background-image: 
-      linear-gradient(hsl(210 80% 50% / 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(210 80% 50% / 0.03) 1px, transparent 1px);
+    background-image:
+      linear-gradient(hsl(0 80% 50% / 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(0 80% 50% / 0.03) 1px, transparent 1px);
     background-size: 40px 40px;
   }
 

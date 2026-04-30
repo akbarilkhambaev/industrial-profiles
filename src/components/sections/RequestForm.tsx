@@ -1,7 +1,9 @@
+'use client';
+
 import { useState } from "react";
 import { useLang } from "@/lib/i18n";
 import AnimatedSection from "@/components/AnimatedSection";
-import { MessageCircle, Send } from "lucide-react";
+import { MessageCircle, Send, MapPin, Phone, Mail, Share2, Globe } from "lucide-react";
 import { toast } from "sonner";
 
 const RequestForm = () => {
@@ -34,8 +36,8 @@ const RequestForm = () => {
                 <input className={inputClass} placeholder={t.form.company} value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })} />
               </div>
               <div className="grid sm:grid-cols-2 gap-4">
-                <input className={inputClass} placeholder={t.form.phone} value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
-                <input className={inputClass} type="email" placeholder={t.form.email} value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required />
+                <input className={inputClass} placeholder={t.form.phonePlaceholder} value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
+                <input className={inputClass} type="email" placeholder={t.form.emailPlaceholder} value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required />
               </div>
               <select
                 className={inputClass}
@@ -70,16 +72,52 @@ const RequestForm = () => {
           </AnimatedSection>
 
           <AnimatedSection delay={0.2}>
-            <div className="space-y-6">
-              <div id="contacts">
-                <h4 className="font-heading font-semibold text-foreground mb-3">Quick Contacts</h4>
-                <div className="space-y-3">
-                  <a href="#" className="flex items-center gap-3 text-sm text-muted-foreground hover:text-primary transition-colors">
-                    <MessageCircle size={18} /> WhatsApp
-                  </a>
-                  <a href="#" className="flex items-center gap-3 text-sm text-muted-foreground hover:text-primary transition-colors">
-                    <Send size={18} /> Telegram
-                  </a>
+            <div id="contacts" className="rounded-xl overflow-hidden h-full bg-graphite text-graphite-foreground p-8 flex flex-col gap-8">
+              <div>
+                <h3 className="text-xl font-heading font-bold mb-3 leading-snug">
+                  {t.form.sidebarHeading}
+                </h3>
+                <p className="text-sm text-graphite-foreground/70 leading-relaxed">
+                  {t.form.sidebarSubtitle}
+                </p>
+              </div>
+
+              <div className="space-y-5 flex-1">
+                <div className="flex items-start gap-3">
+                  <MapPin size={18} className="text-primary mt-0.5 shrink-0" />
+                  <div>
+                    <p className="text-xs font-heading font-semibold uppercase tracking-wider text-graphite-foreground/60 mb-0.5">{t.form.addressLabel}</p>
+                    <p className="text-sm text-graphite-foreground/90">{t.form.address}</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <Phone size={18} className="text-primary mt-0.5 shrink-0" />
+                  <div>
+                    <p className="text-xs font-heading font-semibold uppercase tracking-wider text-graphite-foreground/60 mb-0.5">{t.form.phoneLabel}</p>
+                    <a href={`tel:${t.form.phone}`} className="text-sm text-graphite-foreground/90 hover:text-primary transition-colors">{t.form.phone}</a>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <Mail size={18} className="text-primary mt-0.5 shrink-0" />
+                  <div>
+                    <p className="text-xs font-heading font-semibold uppercase tracking-wider text-graphite-foreground/60 mb-0.5">{t.form.emailLabel}</p>
+                    <a href={`mailto:${t.form.email}`} className="text-sm text-graphite-foreground/90 hover:text-primary transition-colors">{t.form.email}</a>
+                  </div>
+                </div>
+              </div>
+
+              <div className="border-t border-graphite-muted/30 pt-6 flex items-center gap-4">
+                <a href="#" aria-label="WhatsApp" className="flex items-center gap-2 text-sm text-graphite-foreground/70 hover:text-primary transition-colors">
+                  <MessageCircle size={18} /> WhatsApp
+                </a>
+                <a href="#" aria-label="Telegram" className="flex items-center gap-2 text-sm text-graphite-foreground/70 hover:text-primary transition-colors">
+                  <Send size={16} /> Telegram
+                </a>
+                <div className="ml-auto flex gap-3">
+                  <a href="#" aria-label="Share" className="text-graphite-foreground/40 hover:text-primary transition-colors"><Share2 size={18} /></a>
+                  <a href="#" aria-label="Website" className="text-graphite-foreground/40 hover:text-primary transition-colors"><Globe size={18} /></a>
                 </div>
               </div>
             </div>
@@ -91,3 +129,4 @@ const RequestForm = () => {
 };
 
 export default RequestForm;
+

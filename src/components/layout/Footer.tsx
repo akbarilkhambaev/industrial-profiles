@@ -1,3 +1,5 @@
+'use client';
+
 import { useLang } from "@/lib/i18n";
 import { Mail, Phone, MapPin } from "lucide-react";
 
@@ -10,8 +12,8 @@ const Footer = () => {
         <div className="grid md:grid-cols-3 gap-12">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded bg-primary flex items-center justify-center font-heading font-bold text-primary-foreground text-sm">AP</div>
-              <span className="font-heading font-bold text-lg text-graphite-foreground">AlumProfile</span>
+              <div className="w-8 h-8 rounded bg-primary flex items-center justify-center font-heading font-bold text-primary-foreground text-sm">A</div>
+              <span className="font-heading font-bold text-lg text-graphite-foreground">AKFAINNOVATION</span>
             </div>
             <p className="text-graphite-muted text-sm leading-relaxed">{t.footer.description}</p>
           </div>

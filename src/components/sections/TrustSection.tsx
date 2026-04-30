@@ -1,3 +1,5 @@
+'use client';
+
 import { useRef, useEffect, useState } from "react";
 import { useInView } from "framer-motion";
 import { useLang } from "@/lib/i18n";
@@ -60,3 +62,4 @@ const TrustSection = () => {
 };
 
 export default TrustSection;
+

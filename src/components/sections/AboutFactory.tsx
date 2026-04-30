@@ -1,6 +1,8 @@
+'use client';
+
 import { useLang } from "@/lib/i18n";
 import { CheckCircle } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import AnimatedSection from "@/components/AnimatedSection";
 import factoryImage from "@/assets/factory.jpg";
 
@@ -18,7 +20,7 @@ const AboutFactory = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <AnimatedSection delay={0.1}>
             <img
-              src={factoryImage}
+              src={factoryImage.src}
               alt="Aluminum extrusion factory"
               className="rounded-lg w-full object-cover aspect-video"
             />
@@ -34,7 +36,7 @@ const AboutFactory = () => {
                 </li>
               ))}
             </ul>
-            <Link to="/about" className="inline-flex items-center text-sm font-heading font-semibold text-primary hover:text-primary/80 transition-colors">
+            <Link href="/about" className="inline-flex items-center text-sm font-heading font-semibold text-primary hover:text-primary/80 transition-colors">
               {t.about.cta} →
             </Link>
           </AnimatedSection>

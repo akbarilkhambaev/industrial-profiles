@@ -1,16 +1,18 @@
+'use client';
+
 import { useLang } from "@/lib/i18n";
 import AnimatedSection from "@/components/AnimatedSection";
 import { Settings, Wrench, Clock, Paintbrush, Truck, ShieldCheck } from "lucide-react";
 
-import imgEngineering from "@/assets/product-custom.jpg";
-import imgExtrusion from "@/assets/product-structural.jpg";
-import imgLeadTime from "@/assets/factory.jpg";
-import imgCoating from "@/assets/product-facade.jpg";
-import imgLogistics from "@/assets/product-transport.jpg";
-import imgQuality from "@/assets/product-cnc.jpg";
-
 const icons = [Settings, Wrench, Clock, Paintbrush, Truck, ShieldCheck];
-const images = [imgEngineering, imgExtrusion, imgLeadTime, imgCoating, imgLogistics, imgQuality];
+const images = [
+  "/timeline_section/Инженерная_экспертиза.png",
+  "/timeline_section/Экструзия_на_заказ.png",
+  "/timeline_section/Быстрые_сроки.png",
+  "/timeline_section/Покрытия_и_отделка.png",
+  "/timeline_section/Экспортная_логистика.png",
+  "/timeline_section/Контроль_качества.png",
+];
 
 const WhyChooseUs = () => {
   const { t } = useLang();
@@ -63,17 +65,17 @@ const WhyChooseUs = () => {
                       <p className="text-muted-foreground leading-relaxed max-w-md">{item.description}</p>
                     </div>
 
-                    {/* Image block */}
+                    {/* Icon block */}
                     <div
-                      className={`py-12 px-8 lg:px-16 ${
-                        isEven ? "lg:order-2 lg:pl-20" : "lg:order-1 lg:pr-20"
+                      className={`py-12 px-8 lg:px-16 flex ${
+                        isEven ? "lg:order-2 lg:pl-20 justify-start" : "lg:order-1 lg:pr-20 justify-end"
                       }`}
                     >
-                      <div className="rounded-xl overflow-hidden border border-border shadow-sm aspect-[16/9]">
+                      <div className="rounded-xl border border-border shadow-sm bg-muted/40 flex items-center justify-center w-72 h-72">
                         <img
                           src={image}
                           alt={item.title}
-                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                          className="w-56 h-56 object-contain"
                         />
                       </div>
                     </div>
@@ -94,3 +96,4 @@ const WhyChooseUs = () => {
 };
 
 export default WhyChooseUs;
+
