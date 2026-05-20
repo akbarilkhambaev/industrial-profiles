@@ -5,10 +5,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import AnimatedSection from "@/components/AnimatedSection";
 import { useLang } from "@/lib/i18n";
-import { CheckCircle, Award, Users, Globe, ShieldCheck, Leaf, Wrench } from "lucide-react";
-
-
-
+import { CheckCircle, Award, Users, Globe, ShieldCheck, Wrench } from "lucide-react";
 
 const About = () => {
   const { t } = useLang();
@@ -45,37 +42,21 @@ const About = () => {
 
         {/* Company Profile */}
         <section id="company" className="relative py-24 section-dark overflow-hidden">
-          {/* Background video */}
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover"
-            src="/videos/about.mp4"
-          />
-          {/* Dark overlay */}
+          <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover" src="/videos/about.mp4" />
           <div className="absolute inset-0 bg-graphite/85" />
-
           <div className="container mx-auto px-4 lg:px-8 relative z-10">
             <AnimatedSection>
               <p className="text-primary font-heading font-semibold text-sm tracking-widest uppercase mb-3">{a.nav.about}</p>
               <h1 className="text-4xl md:text-6xl font-heading font-bold text-white mb-8 drop-shadow-lg">{a.company.title}</h1>
             </AnimatedSection>
-
             <AnimatedSection delay={0.1}>
-              <p className="text-xl text-white/90 leading-relaxed max-w-4xl mb-8 drop-shadow">
-                {a.company.intro}
-              </p>
+              <p className="text-xl text-white/90 leading-relaxed max-w-4xl mb-8 drop-shadow">{a.company.intro}</p>
             </AnimatedSection>
-
             <AnimatedSection delay={0.15}>
               <p className="text-white/80 text-lg leading-relaxed mb-4 max-w-3xl">{a.company.production}</p>
               <p className="text-white/80 text-lg leading-relaxed mb-4 max-w-3xl">{a.company.location}</p>
               <p className="text-white text-lg leading-relaxed font-semibold max-w-3xl drop-shadow">{a.company.slogan}</p>
             </AnimatedSection>
-
-            {/* Key stats */}
             <AnimatedSection delay={0.25}>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16">
                 {a.company.stats.map((stat, i) => (
@@ -96,11 +77,9 @@ const About = () => {
               <p className="text-primary font-heading font-semibold text-sm tracking-widest uppercase mb-3">{a.nav.mission}</p>
               <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-8">{a.mission.title}</h2>
             </AnimatedSection>
-
             <AnimatedSection delay={0.1}>
               <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl mb-12">{a.mission.description}</p>
             </AnimatedSection>
-
             <AnimatedSection delay={0.15}>
               <h3 className="text-xl font-heading font-semibold text-foreground mb-6">{a.mission.valuesTitle}</h3>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -116,7 +95,6 @@ const About = () => {
                 })}
               </div>
             </AnimatedSection>
-
             <AnimatedSection delay={0.2}>
               <p className="text-muted-foreground leading-relaxed mt-10 max-w-3xl">{a.mission.outro}</p>
             </AnimatedSection>
@@ -125,19 +103,10 @@ const About = () => {
 
         {/* Quality Policy */}
         <section id="quality" className="relative section-dark overflow-hidden">
-          {/* Right half — full-height video, pinned to section */}
           <div className="hidden lg:block absolute right-0 top-0 w-1/2 h-full">
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="w-full h-full object-cover"
-              src="/videos/products.mp4"
-            />
+            <video autoPlay muted loop playsInline className="w-full h-full object-cover" src="/videos/products.mp4" />
             <div className="absolute inset-0 bg-gradient-to-r from-graphite via-transparent to-transparent" />
             <div className="absolute inset-0 bg-gradient-to-t from-graphite/80 via-transparent to-transparent" />
-            {/* ISO certificate badges */}
             <div className="absolute bottom-8 left-8 right-8 flex flex-wrap gap-3">
               {["ISO 9001:2015", "ISO 14001:2015", "BS OHSAS 18001:2007"].map((cert) => (
                 <div key={cert} className="flex items-center gap-2 px-3 py-2 rounded-lg bg-graphite/80 border border-primary/30 backdrop-blur-sm">
@@ -147,19 +116,16 @@ const About = () => {
               ))}
             </div>
           </div>
-
           <div className="container mx-auto px-4 lg:px-8 relative z-10">
             <div className="lg:w-1/2 lg:pr-16 py-24">
               <AnimatedSection>
                 <p className="text-primary font-heading font-semibold text-sm tracking-widest uppercase mb-3">{a.nav.quality}</p>
                 <h2 className="text-3xl md:text-4xl font-heading font-bold mb-8">{a.quality.title}</h2>
               </AnimatedSection>
-
               <AnimatedSection delay={0.1}>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-6">{a.quality.intro}</p>
                 <p className="text-muted-foreground leading-relaxed mb-12">{a.quality.standards}</p>
               </AnimatedSection>
-
               <AnimatedSection delay={0.15}>
                 <h3 className="text-xl font-heading font-semibold mb-6">{a.quality.commitTitle}</h3>
                 <ul className="space-y-3">
@@ -171,12 +137,9 @@ const About = () => {
                   ))}
                 </ul>
               </AnimatedSection>
-
               <AnimatedSection delay={0.2}>
                 <p className="text-muted-foreground leading-relaxed mt-10">{a.quality.outro}</p>
               </AnimatedSection>
-
-              {/* CTA */}
               <AnimatedSection delay={0.25}>
                 <div className="mt-16 pb-24 p-8 rounded-lg bg-primary/10 border border-primary/20 text-center">
                   <h3 className="text-2xl font-heading font-bold mb-4">{a.cta.title}</h3>

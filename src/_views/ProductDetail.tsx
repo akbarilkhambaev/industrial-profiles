@@ -78,7 +78,8 @@ const ProductDetail = () => {
         <div className="container mx-auto px-4 lg:px-8 py-12">
           <AnimatedSection>
             <Link href="/products" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-8">
-              <ArrowLeft size={16} /> {t.productDetail.backToCatalog}
+              <ArrowLeft size={16} />
+              {t.productDetail.backToCatalog}
             </Link>
           </AnimatedSection>
 
@@ -125,11 +126,13 @@ const ProductDetail = () => {
                 <h3 className="font-heading font-semibold text-foreground mb-4">{t.productDetail.downloads}</h3>
                 <div className="space-y-2 mb-8">
                   <a href="#" className="flex items-center gap-3 p-3 rounded border border-border hover:border-primary/30 text-sm text-muted-foreground hover:text-primary transition-colors">
-                    <FileText size={18} /> {t.productDetail.pdfCatalog}
+                    <FileText size={18} />
+                    {t.productDetail.pdfCatalog}
                     <Download size={14} className="ml-auto" />
                   </a>
                   <a href="#" className="flex items-center gap-3 p-3 rounded border border-border hover:border-primary/30 text-sm text-muted-foreground hover:text-primary transition-colors">
-                    <FileText size={18} /> {t.productDetail.techDrawing}
+                    <FileText size={18} />
+                    {t.productDetail.techDrawing}
                     <Download size={14} className="ml-auto" />
                   </a>
                 </div>

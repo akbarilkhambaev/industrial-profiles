@@ -1618,9 +1618,6 @@ h1,
 .bg-secondary\/30{
   background-color: hsl(var(--secondary) / 0.3);
 }
-.bg-secondary\/40{
-  background-color: hsl(var(--secondary) / 0.4);
-}
 .bg-secondary\/50{
   background-color: hsl(var(--secondary) / 0.5);
 }
@@ -2034,9 +2031,6 @@ h1,
 .text-white\/90{
   color: rgb(255 255 255 / 0.9);
 }
-.underline{
-  text-decoration-line: underline;
-}
 .underline-offset-4{
   text-underline-offset: 4px;
 }
@@ -2438,10 +2432,6 @@ html {
 
 .hover\:text-primary\/80:hover{
   color: hsl(var(--primary) / 0.8);
-}
-
-.hover\:text-primary\/90:hover{
-  color: hsl(var(--primary) / 0.9);
 }
 
 .hover\:text-sidebar-accent-foreground:hover{

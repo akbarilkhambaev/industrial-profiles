@@ -1,17 +1,3 @@
-import productCustom from "@/assets/product-custom.jpg";
-import productStructural from "@/assets/product-structural.jpg";
-import productFacade from "@/assets/product-facade.jpg";
-import productTransport from "@/assets/product-transport.jpg";
-import productSolar from "@/assets/product-solar.jpg";
-import productCnc from "@/assets/product-cnc.jpg";
-
-const c = productCustom.src;
-const s = productStructural.src;
-const f = productFacade.src;
-const tr = productTransport.src;
-const so = productSolar.src;
-const cn = productCnc.src;
-
 export interface Product {
   id: string;
   image: string;
@@ -26,62 +12,49 @@ export interface Product {
 export const products: Product[] = [
   {
     id: "custom-industrial",
-    image: c,
+    image: "/industrial/квадратный.png",
     alloy: "6063-T5 / 6061-T6",
     tolerance: "±0.1 mm",
     maxLength: "7000 mm",
     surface: "Mill finish, Anodized, Powder coated",
     processing: "CNC milling, drilling, tapping, cutting",
-    gallery: [c, c, c],
+    gallery: [
+      "/industrial/квадратный.png",
+      "/industrial/прямоугольный.png",
+      "/industrial/круглный.png",
+      "/industrial/лобразный.png",
+      "/industrial/уобразный.png",
+    ],
   },
   {
-    id: "structural",
-    image: s,
-    alloy: "6061-T6 / 6082-T6",
-    tolerance: "±0.15 mm",
-    maxLength: "7000 mm",
-    surface: "Mill finish, Anodized (silver/black)",
-    processing: "CNC cutting, drilling, welding prep",
-    gallery: [s, s, s],
+    id: "solar-panels",
+    image: "/suntech/1.png",
+    alloy: "6063-T5 / 6005A-T5",
+    tolerance: "±0.1 mm",
+    maxLength: "6000 mm",
+    surface: "Anodized (silver/black), Mill finish",
+    processing: "CNC cutting, drilling, punching",
+    gallery: [
+      "/suntech/1.png",
+      "/suntech/2.png",
+      "/suntech/3.png",
+      "/suntech/4.png",
+      "/suntech/5.png",
+      "/suntech/6.png",
+    ],
   },
   {
-    id: "facade-architectural",
-    image: f,
+    id: "vent-fasad",
+    image: "/vent_fasad/1.png",
     alloy: "6063-T5 / 6060-T5",
     tolerance: "±0.1 mm",
-    maxLength: "6500 mm",
-    surface: "Anodized, Powder coated RAL, Wood-grain",
-    processing: "CNC milling, notching, thermal break",
-    gallery: [f, f, f],
-  },
-  {
-    id: "transport-automotive",
-    image: tr,
-    alloy: "6061-T6 / 7005-T6",
-    tolerance: "±0.12 mm",
     maxLength: "7000 mm",
-    surface: "Mill finish, E-coat, Anodized",
-    processing: "CNC machining, welding, bending",
-    gallery: [tr, tr, tr],
-  },
-  {
-    id: "solar-mounting",
-    image: so,
-    alloy: "6063-T5 / 6005-T5",
-    tolerance: "±0.15 mm",
-    maxLength: "6000 mm",
-    surface: "Anodized (silver), Mill finish",
-    processing: "Pre-drilled, pre-cut to length",
-    gallery: [so, so, so],
-  },
-  {
-    id: "cnc-parts",
-    image: cn,
-    alloy: "6061-T6 / 2024-T3",
-    tolerance: "±0.05 mm",
-    maxLength: "Custom",
-    surface: "Anodized, Chromate, Nickel plated",
-    processing: "5-axis CNC, turning, EDM, grinding",
-    gallery: [cn, cn, cn],
+    surface: "Anodized, Powder coated RAL",
+    processing: "CNC cutting, drilling, notching",
+    gallery: [
+      "/vent_fasad/1.png",
+      "/vent_fasad/2.png",
+      "/vent_fasad/3.png",
+    ],
   },
 ];

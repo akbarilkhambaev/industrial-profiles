@@ -91,11 +91,8 @@ export const translations = {
       viewDetails: "View Details",
       categories: [
         { title: "Custom Industrial Profiles", description: "Complex cross-section extrusions tailored to your specifications with tight tolerances." },
-        { title: "Structural Profiles", description: "High-strength hollow and solid profiles for load-bearing construction applications." },
-        { title: "Facade & Architectural", description: "Precision profiles for curtain walls, window systems and modern building facades." },
-        { title: "Transport & Automotive", description: "Lightweight structural profiles for vehicle frames, trailers and rolling stock." },
-        { title: "Solar Mounting Systems", description: "Durable mounting rails and clamps for photovoltaic panel installation." },
-        { title: "CNC Processed Parts", description: "Finished components with drilling, milling, cutting and surface treatment." },
+        { title: "Solar Panels", description: "Aluminum frame profiles and mounting systems for photovoltaic solar panels." },
+        { title: "BKV 47 — Ventilated Facade System", description: "Multi-layer NVF system with air gap for moisture removal. Compatible with fibre cement, HPL, porcelain stoneware and aluminium composite panels." },
       ],
     },
     trust: {
@@ -343,11 +340,8 @@ export const translations = {
       viewDetails: "Подробнее",
       categories: [
         { title: "Промышленные профили", description: "Экструзия сложных сечений по вашим спецификациям с жёсткими допусками." },
-        { title: "Конструкционные профили", description: "Высокопрочные полые и сплошные профили для несущих конструкций." },
-        { title: "Фасадные и архитектурные", description: "Профили для навесных фасадов, оконных систем и современных зданий." },
-        { title: "Транспортные профили", description: "Лёгкие конструкционные профили для рам, прицепов и подвижного состава." },
-        { title: "Солнечные системы", description: "Надёжные монтажные рейки и крепления для фотоэлектрических панелей." },
-        { title: "ЧПУ-обработка", description: "Готовые компоненты: сверление, фрезерование, резка, обработка поверхности." },
+        { title: "Солнечные панели", description: "Алюминиевые рамочные профили и монтажные системы для фотоэлектрических солнечных панелей." },
+        { title: "BKV 47 — Вент-фасадная система", description: "Система навесного вентилируемого фасада (НВФ): несущий каркас, теплоизоляция, воздушная прослойка. Совместима с фиброцементом, HPL, керамогранитом и алюминиевыми панелями." },
       ],
     },
     trust: {

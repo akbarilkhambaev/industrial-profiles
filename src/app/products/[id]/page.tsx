@@ -4,8 +4,8 @@ import ProductDetail from "@/_views/ProductDetail";
 
 const productNames: Record<string, string> = {
   "custom-industrial": "Промышленные профили на заказ",
-  "structural": "Конструкционные профили",
-  "facade-architectural": "Фасадные и архитектурные профили",
+  "solar-panels": "Солнечные панели",
+  "vent-fasad": "BKV 47 — Вент-фасадная система (НВФ)",
   "transport-automotive": "Транспортные и автомобильные профили",
   "solar-mounting": "Системы крепления солнечных панелей",
   "cnc-parts": "Детали с ЧПУ обработкой",

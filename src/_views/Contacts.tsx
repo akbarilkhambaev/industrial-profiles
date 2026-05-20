@@ -56,12 +56,8 @@ const Contacts = () => {
           <div className="absolute inset-0 bg-gradient-to-br from-graphite via-graphite/95 to-graphite" />
           <div className="container mx-auto px-4 lg:px-8 relative z-10">
             <AnimatedSection>
-              <p className="text-primary font-heading font-semibold text-sm tracking-widest uppercase mb-3">
-                {c.sectionLabel}
-              </p>
-              <h1 className="text-4xl md:text-6xl font-heading font-bold text-white mb-4">
-                {c.title}
-              </h1>
+              <p className="text-primary font-heading font-semibold text-sm tracking-widest uppercase mb-3">{c.sectionLabel}</p>
+              <h1 className="text-4xl md:text-6xl font-heading font-bold text-white mb-4">{c.title}</h1>
               <p className="text-graphite-foreground/70 text-lg max-w-xl">{c.subtitle}</p>
             </AnimatedSection>
           </div>
@@ -80,13 +76,9 @@ const Contacts = () => {
                         <Icon size={18} className="text-primary" />
                       </div>
                       <div>
-                        <p className="text-xs font-heading font-semibold uppercase tracking-widest text-muted-foreground mb-0.5">
-                          {label}
-                        </p>
+                        <p className="text-xs font-heading font-semibold uppercase tracking-widest text-muted-foreground mb-0.5">{label}</p>
                         {href ? (
-                          <a href={href} target="_blank" rel="noopener noreferrer" className="text-foreground text-sm hover:text-primary transition-colors">
-                            {value}
-                          </a>
+                          <a href={href} target="_blank" rel="noopener noreferrer" className="text-foreground text-sm hover:text-primary transition-colors">{value}</a>
                         ) : (
                           <p className="text-foreground text-sm">{value}</p>
                         )}
@@ -119,7 +111,7 @@ const Contacts = () => {
                 <div className="rounded-xl overflow-hidden border border-border h-64">
                   <iframe
                     title="BENKAM location"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d48000!2d65.3792!3d40.0843!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f51f0a0a0a0a0a1%3A0x0!2sNavoi%2C+Uzbekistan!5e0!3m2!1sen!2s!4v1680000000000!5m2!1sen!2s"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8000!2d65.3792!3d40.0843!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f1f0a0a0a0a0a1%3A0x0!2sNavoi%2C+Uzbekistan!5e0!3m2!1sen!2s!4v1680000000000!5m2!1sen!2s"
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}
@@ -135,35 +127,12 @@ const Contacts = () => {
                 <h2 className="text-2xl font-heading font-bold text-foreground mb-8">{c.formTitle}</h2>
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid sm:grid-cols-2 gap-4">
-                    <input
-                      className={inputClass}
-                      placeholder={f.name}
-                      value={form.name}
-                      onChange={(e) => setForm({ ...form, name: e.target.value })}
-                      required
-                    />
-                    <input
-                      className={inputClass}
-                      placeholder={f.company}
-                      value={form.company}
-                      onChange={(e) => setForm({ ...form, company: e.target.value })}
-                    />
+                    <input className={inputClass} placeholder={f.name} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required />
+                    <input className={inputClass} placeholder={f.company} value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })} />
                   </div>
                   <div className="grid sm:grid-cols-2 gap-4">
-                    <input
-                      className={inputClass}
-                      placeholder={f.phonePlaceholder}
-                      value={form.phone}
-                      onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                    />
-                    <input
-                      className={inputClass}
-                      type="email"
-                      placeholder={f.emailPlaceholder}
-                      value={form.email}
-                      onChange={(e) => setForm({ ...form, email: e.target.value })}
-                      required
-                    />
+                    <input className={inputClass} placeholder={f.phonePlaceholder} value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
+                    <input className={inputClass} type="email" placeholder={f.emailPlaceholder} value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required />
                   </div>
                   <textarea
                     className={`${inputClass} min-h-[140px] resize-y`}
