@@ -3,19 +3,70 @@
 import { useState } from "react";
 import { useLang } from "@/lib/i18n";
 import AnimatedSection from "@/components/AnimatedSection";
-import { MessageCircle, Send, MapPin, Phone, Mail, Share2, Globe } from "lucide-react";
+import { Globe, Loader2, Mail, MapPin, MessageCircle, Paperclip, Phone, Send, Share2 } from "lucide-react";
 import { toast } from "sonner";
 
-const RequestForm = () => {
-  const { t } = useLang();
-  const [form, setForm] = useState({
-    name: "", company: "", phone: "", email: "", category: "", message: "",
-  });
+const initialForm = {
+  name: "",
+  company: "",
+  phone: "",
+  email: "",
+  category: "",
+  message: "",
+  website: "",
+};
 
-  const handleSubmit = (e: React.FormEvent) => {
+const RequestForm = () => {
+  const { t, lang } = useLang();
+  const [form, setForm] = useState(initialForm);
+  const [file, setFile] = useState<File | null>(null);
+  const [fileInputKey, setFileInputKey] = useState(0);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("Request sent successfully!");
-    setForm({ name: "", company: "", phone: "", email: "", category: "", message: "" });
+
+    if (isSubmitting) {
+      return;
+    }
+
+    const payload = new FormData();
+    payload.append("source", "home_request");
+    payload.append("lang", lang);
+    payload.append("page", window.location.href);
+    Object.entries(form).forEach(([key, value]) => payload.append(key, value));
+
+    if (file) {
+      payload.append("file", file);
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("/api/telegram", {
+        method: "POST",
+        body: payload,
+      });
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(result?.error || "Failed to send request");
+      }
+
+      if (result?.warning === "file_not_sent") {
+        toast.warning(lang === "ru" ? "Заявка отправлена, но файл не прикрепился." : "Request sent, but the file was not attached.");
+      } else {
+        toast.success(lang === "ru" ? "Заявка отправлена!" : "Request sent successfully!");
+      }
+
+      setForm(initialForm);
+      setFile(null);
+      setFileInputKey((key) => key + 1);
+    } catch {
+      toast.error(lang === "ru" ? "Не удалось отправить заявку. Попробуйте позже." : "Could not send the request. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const inputClass = "w-full px-4 py-3 rounded bg-card border border-border text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-colors";
@@ -31,6 +82,15 @@ const RequestForm = () => {
         <div className="grid lg:grid-cols-3 gap-12">
           <AnimatedSection className="lg:col-span-2" delay={0.1}>
             <form onSubmit={handleSubmit} className="space-y-4">
+              <input
+                type="text"
+                className="hidden"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                value={form.website}
+                onChange={(e) => setForm({ ...form, website: e.target.value })}
+              />
               <div className="grid sm:grid-cols-2 gap-4">
                 <input className={inputClass} placeholder={t.form.name} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required />
                 <input className={inputClass} placeholder={t.form.company} value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })} />
@@ -57,16 +117,18 @@ const RequestForm = () => {
               />
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <label className="cursor-pointer flex items-center gap-2 px-4 py-2 rounded border border-dashed border-border hover:border-primary/40 transition-colors">
-                  📎 {t.form.attach}
-                  <input type="file" className="hidden" />
+                  <Paperclip size={16} />
+                  <span className="max-w-[260px] truncate">{file?.name || t.form.attach}</span>
+                  <input key={fileInputKey} type="file" className="hidden" onChange={(e) => setFile(e.target.files?.[0] || null)} />
                 </label>
               </div>
               <button
                 type="submit"
-                className="inline-flex items-center gap-2 px-8 py-3 rounded font-heading font-semibold text-sm bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+                disabled={isSubmitting}
+                className="inline-flex items-center gap-2 px-8 py-3 rounded font-heading font-semibold text-sm bg-primary text-primary-foreground hover:bg-primary/90 transition-colors disabled:cursor-not-allowed disabled:opacity-70"
               >
-                <Send size={16} />
-                {t.form.submit}
+                {isSubmitting ? <Loader2 size={16} className="animate-spin" /> : <Send size={16} />}
+                {isSubmitting ? (lang === "ru" ? "Отправка..." : "Sending...") : t.form.submit}
               </button>
             </form>
           </AnimatedSection>
@@ -129,4 +191,3 @@ const RequestForm = () => {
 };
 
 export default RequestForm;
-

@@ -6,8 +6,17 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import AnimatedSection from "@/components/AnimatedSection";
 import { useLang } from "@/lib/i18n";
-import { MapPin, Phone, Mail, Clock, MessageCircle, Send } from "lucide-react";
+import { Clock, Loader2, Mail, MapPin, MessageCircle, Paperclip, Phone, Send } from "lucide-react";
 import { toast } from "sonner";
+
+const initialForm = {
+  name: "",
+  company: "",
+  phone: "",
+  email: "",
+  message: "",
+  website: "",
+};
 
 const Contacts = () => {
   const { t, lang } = useLang();
@@ -23,18 +32,65 @@ const Contacts = () => {
       "@type": "ContactPage",
       "name": "Контакты AKFA INNOVATION",
       "url": "https://akfainnovation.uz/contacts",
-      "breadcrumb": { "@type": "BreadcrumbList", "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://akfainnovation.uz/" }, { "@type": "ListItem", "position": 2, "name": "Контакты", "item": "https://akfainnovation.uz/contacts" }] }
-    }
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://akfainnovation.uz/" },
+          { "@type": "ListItem", "position": 2, "name": "Контакты", "item": "https://akfainnovation.uz/contacts" },
+        ],
+      },
+    },
   });
 
-  const [form, setForm] = useState({
-    name: "", company: "", phone: "", email: "", message: "",
-  });
+  const [form, setForm] = useState(initialForm);
+  const [file, setFile] = useState<File | null>(null);
+  const [fileInputKey, setFileInputKey] = useState(0);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success(lang === "ru" ? "Запрос отправлен!" : "Request sent successfully!");
-    setForm({ name: "", company: "", phone: "", email: "", message: "" });
+
+    if (isSubmitting) {
+      return;
+    }
+
+    const payload = new FormData();
+    payload.append("source", "contacts_page");
+    payload.append("lang", lang);
+    payload.append("page", window.location.href);
+    Object.entries(form).forEach(([key, value]) => payload.append(key, value));
+
+    if (file) {
+      payload.append("file", file);
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("/api/telegram", {
+        method: "POST",
+        body: payload,
+      });
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(result?.error || "Failed to send request");
+      }
+
+      if (result?.warning === "file_not_sent") {
+        toast.warning(lang === "ru" ? "Заявка отправлена, но файл не прикрепился." : "Request sent, but the file was not attached.");
+      } else {
+        toast.success(lang === "ru" ? "Заявка отправлена!" : "Request sent successfully!");
+      }
+
+      setForm(initialForm);
+      setFile(null);
+      setFileInputKey((key) => key + 1);
+    } catch {
+      toast.error(lang === "ru" ? "Не удалось отправить заявку. Попробуйте позже." : "Could not send the request. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const inputClass =
@@ -126,6 +182,15 @@ const Contacts = () => {
               <AnimatedSection delay={0.2}>
                 <h2 className="text-2xl font-heading font-bold text-foreground mb-8">{c.formTitle}</h2>
                 <form onSubmit={handleSubmit} className="space-y-4">
+                  <input
+                    type="text"
+                    className="hidden"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                    value={form.website}
+                    onChange={(e) => setForm({ ...form, website: e.target.value })}
+                  />
                   <div className="grid sm:grid-cols-2 gap-4">
                     <input className={inputClass} placeholder={f.name} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required />
                     <input className={inputClass} placeholder={f.company} value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })} />
@@ -142,16 +207,18 @@ const Contacts = () => {
                   />
                   <div className="flex items-center gap-2 text-sm text-muted-foreground">
                     <label className="cursor-pointer flex items-center gap-2 px-4 py-2 rounded border border-dashed border-border hover:border-primary/40 transition-colors">
-                      📎 {f.attach}
-                      <input type="file" className="hidden" />
+                      <Paperclip size={16} />
+                      <span className="max-w-[260px] truncate">{file?.name || f.attach}</span>
+                      <input key={fileInputKey} type="file" className="hidden" onChange={(e) => setFile(e.target.files?.[0] || null)} />
                     </label>
                   </div>
                   <button
                     type="submit"
-                    className="inline-flex items-center gap-2 px-8 py-3 rounded font-heading font-semibold text-sm bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+                    disabled={isSubmitting}
+                    className="inline-flex items-center gap-2 px-8 py-3 rounded font-heading font-semibold text-sm bg-primary text-primary-foreground hover:bg-primary/90 transition-colors disabled:cursor-not-allowed disabled:opacity-70"
                   >
-                    <Send size={16} />
-                    {f.submit}
+                    {isSubmitting ? <Loader2 size={16} className="animate-spin" /> : <Send size={16} />}
+                    {isSubmitting ? (lang === "ru" ? "Отправка..." : "Sending...") : f.submit}
                   </button>
                 </form>
               </AnimatedSection>
