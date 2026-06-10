@@ -6,8 +6,10 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import AnimatedSection from "@/components/AnimatedSection";
 import { useLang } from "@/lib/i18n";
-import { Clock, Loader2, Mail, MapPin, MessageCircle, Paperclip, Phone, Send } from "lucide-react";
+import { Clock, Loader2, Mail, MapPin, Paperclip, Phone, Send } from "lucide-react";
 import { toast } from "sonner";
+
+const TELEGRAM_CONTACT_HREF = "tg://resolve?phone=998909008625";
 
 const initialForm = {
   name: "",
@@ -25,7 +27,7 @@ const Contacts = () => {
 
   usePageMeta({
     title: "Контакты — Заказать алюминиевые профили в Ташкенте",
-    description: "Свяжитесь с AKFA INNOVATION для заказа алюминиевых профилей. Ташкент, Узбекистан. Тел: +998 71 203 00 00. Ответим в течение 2 часов.",
+    description: "Свяжитесь с AKFA INNOVATION для заказа алюминиевых профилей. Ташкент, Узбекистан. Тел: +998 90 900 86 25. Ответим в течение 2 часов.",
     canonical: "/contacts",
     jsonLd: {
       "@context": "https://schema.org",
@@ -97,7 +99,7 @@ const Contacts = () => {
     "w-full px-4 py-3 rounded bg-card border border-border text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-colors";
 
   const contactItems = [
-    { icon: MapPin, label: c.addressLabel, value: c.address, href: "https://maps.google.com/?q=Navoi+Free+Economic+Zone+Uzbekistan" },
+    { icon: MapPin, label: c.addressLabel, value: c.address, href: "https://maps.google.com/?q=улица+Махтумкули,+2%2F1A,+Ташкент" },
     { icon: Phone, label: c.phoneLabel, value: c.phone, href: `tel:${c.phone}` },
     { icon: Mail, label: c.emailLabel, value: c.email, href: `mailto:${c.email}` },
     { icon: Clock, label: c.workingHoursLabel, value: c.workingHours, href: null },
@@ -146,17 +148,7 @@ const Contacts = () => {
                 {/* Quick contact */}
                 <div className="flex gap-4 mb-10">
                   <a
-                    href="https://wa.me/998712030000"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-5 py-3 rounded-lg bg-[#2a2a2e] border border-white/10 text-white text-sm font-heading font-semibold hover:bg-[#3a3a3e] transition-colors"
-                  >
-                    <MessageCircle size={16} /> {c.whatsapp}
-                  </a>
-                  <a
-                    href="https://t.me/benkam_support"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href={TELEGRAM_CONTACT_HREF}
                     className="flex items-center gap-2 px-5 py-3 rounded-lg bg-[#1e1e22] border border-white/10 text-white text-sm font-heading font-semibold hover:bg-[#2e2e34] transition-colors"
                   >
                     <Send size={16} /> {c.telegram}

@@ -1,10 +1,10 @@
 {
   "/_not-found/page": "/_not-found",
-  "/api/telegram/webhook/route": "/api/telegram/webhook",
   "/api/telegram/route": "/api/telegram",
-  "/contacts/page": "/contacts",
+  "/api/telegram/webhook/route": "/api/telegram/webhook",
   "/about/page": "/about",
   "/products/page": "/products",
+  "/products/[id]/page": "/products/[id]",
   "/page": "/",
-  "/products/[id]/page": "/products/[id]"
+  "/contacts/page": "/contacts"
 }

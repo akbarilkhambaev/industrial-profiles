@@ -3,8 +3,10 @@
 import { useState } from "react";
 import { useLang } from "@/lib/i18n";
 import AnimatedSection from "@/components/AnimatedSection";
-import { Globe, Loader2, Mail, MapPin, MessageCircle, Paperclip, Phone, Send, Share2 } from "lucide-react";
+import { Loader2, Mail, MapPin, Paperclip, Phone, Send } from "lucide-react";
 import { toast } from "sonner";
+
+const TELEGRAM_CONTACT_HREF = "tg://resolve?phone=998909008625";
 
 const initialForm = {
   name: "",
@@ -171,16 +173,9 @@ const RequestForm = () => {
               </div>
 
               <div className="border-t border-graphite-muted/30 pt-6 flex items-center gap-4">
-                <a href="#" aria-label="WhatsApp" className="flex items-center gap-2 text-sm text-graphite-foreground/70 hover:text-primary transition-colors">
-                  <MessageCircle size={18} /> WhatsApp
-                </a>
-                <a href="#" aria-label="Telegram" className="flex items-center gap-2 text-sm text-graphite-foreground/70 hover:text-primary transition-colors">
+                <a href={TELEGRAM_CONTACT_HREF} aria-label="Telegram" className="flex items-center gap-2 text-sm text-graphite-foreground/70 hover:text-primary transition-colors">
                   <Send size={16} /> Telegram
                 </a>
-                <div className="ml-auto flex gap-3">
-                  <a href="#" aria-label="Share" className="text-graphite-foreground/40 hover:text-primary transition-colors"><Share2 size={18} /></a>
-                  <a href="#" aria-label="Website" className="text-graphite-foreground/40 hover:text-primary transition-colors"><Globe size={18} /></a>
-                </div>
               </div>
             </div>
           </AnimatedSection>
