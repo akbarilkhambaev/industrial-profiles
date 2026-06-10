@@ -10,6 +10,8 @@ import { Clock, Loader2, Mail, MapPin, Paperclip, Phone, Send } from "lucide-rea
 import { toast } from "sonner";
 
 const TELEGRAM_CONTACT_HREF = "tg://resolve?phone=998909008625";
+const MAP_HREF = "https://maps.google.com/?q=ulitsa+Makhtumkuli+2%2F1A+Tashkent+Uzbekistan";
+const MAP_EMBED_SRC = "https://www.google.com/maps?q=ulitsa%20Makhtumkuli%202%2F1A%20Tashkent%20Uzbekistan&output=embed";
 
 const initialForm = {
   name: "",
@@ -99,7 +101,7 @@ const Contacts = () => {
     "w-full px-4 py-3 rounded bg-card border border-border text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-colors";
 
   const contactItems = [
-    { icon: MapPin, label: c.addressLabel, value: c.address, href: "https://maps.google.com/?q=улица+Махтумкули,+2%2F1A,+Ташкент" },
+    { icon: MapPin, label: c.addressLabel, value: c.address, href: MAP_HREF },
     { icon: Phone, label: c.phoneLabel, value: c.phone, href: `tel:${c.phone}` },
     { icon: Mail, label: c.emailLabel, value: c.email, href: `mailto:${c.email}` },
     { icon: Clock, label: c.workingHoursLabel, value: c.workingHours, href: null },
@@ -125,7 +127,7 @@ const Contacts = () => {
         <section className="py-24 section-light">
           <div className="container mx-auto px-4 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-16">
-              {/* Left: contact info + map */}
+              {/* Left: contact info */}
               <AnimatedSection delay={0.1}>
                 <div className="space-y-4 mb-10">
                   {contactItems.map(({ icon: Icon, label, value, href }, i) => (
@@ -153,20 +155,6 @@ const Contacts = () => {
                   >
                     <Send size={16} /> {c.telegram}
                   </a>
-                </div>
-
-                {/* Map */}
-                <div className="rounded-xl overflow-hidden border border-border h-64">
-                  <iframe
-                    title="BENKAM location"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8000!2d65.3792!3d40.0843!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f1f0a0a0a0a0a1%3A0x0!2sNavoi%2C+Uzbekistan!5e0!3m2!1sen!2s!4v1680000000000!5m2!1sen!2s"
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                  />
                 </div>
               </AnimatedSection>
 
@@ -215,6 +203,21 @@ const Contacts = () => {
                 </form>
               </AnimatedSection>
             </div>
+
+            <AnimatedSection delay={0.3} className="mt-16">
+              <div className="rounded-xl overflow-hidden border border-border h-[360px] md:h-[460px] bg-background">
+                <iframe
+                  title="AKFA INNOVATION location, Makhtumkuli 2/1A"
+                  src={MAP_EMBED_SRC}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
+            </AnimatedSection>
           </div>
         </section>
       </main>

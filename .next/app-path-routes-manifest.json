@@ -2,9 +2,9 @@
   "/_not-found/page": "/_not-found",
   "/api/telegram/route": "/api/telegram",
   "/api/telegram/webhook/route": "/api/telegram/webhook",
-  "/about/page": "/about",
-  "/products/page": "/products",
-  "/products/[id]/page": "/products/[id]",
+  "/contacts/page": "/contacts",
   "/page": "/",
-  "/contacts/page": "/contacts"
+  "/about/page": "/about",
+  "/products/[id]/page": "/products/[id]",
+  "/products/page": "/products"
 }
