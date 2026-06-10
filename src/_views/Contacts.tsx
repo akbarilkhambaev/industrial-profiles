@@ -10,8 +10,9 @@ import { Clock, Loader2, Mail, MapPin, Paperclip, Phone, Send } from "lucide-rea
 import { toast } from "sonner";
 
 const TELEGRAM_CONTACT_HREF = "tg://resolve?phone=998909008625";
-const MAP_HREF = "https://maps.google.com/?q=ulitsa+Makhtumkuli+2%2F1A+Tashkent+Uzbekistan";
-const MAP_EMBED_SRC = "https://www.google.com/maps?q=ulitsa%20Makhtumkuli%202%2F1A%20Tashkent%20Uzbekistan&output=embed";
+const MAP_COORDINATES = "41.30466192640795,69.30595514306978";
+const MAP_HREF = `https://maps.google.com/?q=${MAP_COORDINATES}`;
+const MAP_EMBED_SRC = `https://www.google.com/maps?q=${MAP_COORDINATES}&z=17&output=embed`;
 
 const initialForm = {
   name: "",
