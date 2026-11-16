@@ -7,6 +7,10 @@ import { useLang } from "@/lib/i18n";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
+// Переключатель RU/EN скрыт, пока у сайта нет английской версии со своими URL.
+// Чтобы вернуть кнопку, поставьте true.
+const SHOW_LANG_SWITCH = false;
+
 const Header = () => {
   const { lang, setLang, t } = useLang();
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -42,12 +46,14 @@ const Header = () => {
         </nav>
 
         <div className="flex items-center gap-3">
-          <button
-            onClick={() => setLang(lang === "en" ? "ru" : "en")}
-            className="text-xs font-heading font-semibold px-2.5 py-1 rounded border border-graphite-muted/30 text-graphite-muted hover:text-graphite-foreground hover:border-graphite-foreground/40 transition-colors"
-          >
-            {lang === "en" ? "RU" : "EN"}
-          </button>
+          {SHOW_LANG_SWITCH && (
+            <button
+              onClick={() => setLang(lang === "en" ? "ru" : "en")}
+              className="text-xs font-heading font-semibold px-2.5 py-1 rounded border border-graphite-muted/30 text-graphite-muted hover:text-graphite-foreground hover:border-graphite-foreground/40 transition-colors"
+            >
+              {lang === "en" ? "RU" : "EN"}
+            </button>
+          )}
           {isHome && (
             <button
               onClick={() => scrollTo("request-form")}

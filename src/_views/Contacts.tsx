@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from "react";
-import { usePageMeta } from "@/hooks/use-page-meta";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import AnimatedSection from "@/components/AnimatedSection";
@@ -27,25 +26,6 @@ const Contacts = () => {
   const { t, lang } = useLang();
   const c = t.contactsPage;
   const f = t.form;
-
-  usePageMeta({
-    title: "Контакты — Заказать алюминиевые профили в Ташкенте",
-    description: "Свяжитесь с AKFA INNOVATION для заказа алюминиевых профилей. Ташкент, Узбекистан. Тел: +998 90 900 86 25. Ответим в течение 2 часов.",
-    canonical: "/contacts",
-    jsonLd: {
-      "@context": "https://schema.org",
-      "@type": "ContactPage",
-      "name": "Контакты AKFA INNOVATION",
-      "url": "https://akfainnovation.uz/contacts",
-      "breadcrumb": {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://akfainnovation.uz/" },
-          { "@type": "ListItem", "position": 2, "name": "Контакты", "item": "https://akfainnovation.uz/contacts" },
-        ],
-      },
-    },
-  });
 
   const [form, setForm] = useState(initialForm);
   const [file, setFile] = useState<File | null>(null);

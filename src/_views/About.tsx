@@ -1,6 +1,5 @@
 'use client';
 
-import { usePageMeta } from "@/hooks/use-page-meta";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import AnimatedSection from "@/components/AnimatedSection";
@@ -10,20 +9,6 @@ import { CheckCircle, Award, Users, Globe, ShieldCheck, Wrench } from "lucide-re
 const About = () => {
   const { t } = useLang();
   const a = t.aboutPage;
-
-  usePageMeta({
-    title: "О компании BENKAM — Производитель алюминиевых профилей в Центральной Азии",
-    description: "BENKAM / AKFA INNOVATION — единственный крупный производитель алюминиевых профилей в Центральной Азии. Основан в 2016. ISO 9001:2015. СЭЗ Навои, Узбекистан. Экспорт в Европу и СНГ.",
-    canonical: "/about",
-    jsonLd: {
-      "@context": "https://schema.org",
-      "@type": "AboutPage",
-      "name": "О компании BENKAM / AKFA INNOVATION",
-      "description": "Производитель алюминиевых профилей в Центральной Азии. СЭЗ Навои, Узбекистан.",
-      "url": "https://akfainnovation.uz/about",
-      "breadcrumb": { "@type": "BreadcrumbList", "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://akfainnovation.uz/" }, { "@type": "ListItem", "position": 2, "name": "О нас", "item": "https://akfainnovation.uz/about" }] }
-    }
-  });
 
   return (
     <>

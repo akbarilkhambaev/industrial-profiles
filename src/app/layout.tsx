@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "../index.css";
 import { Providers } from "./providers";
+import JsonLd from "@/components/JsonLd";
+import { SITE_URL, organizationJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: {
@@ -22,11 +24,9 @@ export const metadata: Metadata = {
     "AKFA INNOVATION",
   ],
   authors: [{ name: "AKFA INNOVATION / BENKAM" }],
-  metadataBase: new URL("https://akfainnovation.uz"),
-  alternates: {
-    canonical: "/",
-    languages: { ru: "/", en: "/" },
-  },
+  // canonical задаётся на каждой странице отдельно: если поставить его здесь,
+  // страницы без своего canonical (например, 404) унаследуют canonical главной.
+  metadataBase: new URL(SITE_URL),
   openGraph: {
     type: "website",
     siteName: "AKFA INNOVATION",
@@ -50,6 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ru">
       <body>
+        <JsonLd data={organizationJsonLd} />
         <Providers>{children}</Providers>
       </body>
     </html>

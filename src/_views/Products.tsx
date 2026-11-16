@@ -1,7 +1,6 @@
 'use client';
 
 import Link from "next/link";
-import { usePageMeta } from "@/hooks/use-page-meta";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import AnimatedSection from "@/components/AnimatedSection";
@@ -11,20 +10,6 @@ import { ArrowRight } from "lucide-react";
 
 const Products = () => {
   const { t } = useLang();
-
-  usePageMeta({
-    title: "Каталог алюминиевых профилей — Ташкент, Узбекистан",
-    description: "Каталог алюминиевых профилей AKFA INNOVATION: промышленные, конструкционные, фасадные, транспортные, солнечные профили и ЧПУ детали.",
-    canonical: "/products",
-    jsonLd: {
-      "@context": "https://schema.org",
-      "@type": "CollectionPage",
-      "name": "Каталог алюминиевых профилей",
-      "description": "Алюминиевые профили на заказ: промышленные, конструкционные, фасадные, транспортные.",
-      "url": "https://akfainnovation.uz/products",
-      "breadcrumb": { "@type": "BreadcrumbList", "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://akfainnovation.uz/" }, { "@type": "ListItem", "position": 2, "name": "Продукция", "item": "https://akfainnovation.uz/products" }] }
-    }
-  });
 
   return (
     <>

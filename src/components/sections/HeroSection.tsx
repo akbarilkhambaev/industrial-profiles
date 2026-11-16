@@ -32,11 +32,9 @@ const HeroSection = () => {
               <p className="text-primary font-heading font-semibold text-sm tracking-widest uppercase mb-4">
                 Premium Aluminum Extrusion
               </p>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-graphite-foreground leading-tight mb-2">
-                {t.hero.title}
-              </h1>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-primary leading-tight mb-6">
-                {t.hero.titleAccent}
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-graphite-foreground leading-tight mb-6">
+                {t.hero.title}{" "}
+                <span className="block mt-2 text-primary">{t.hero.titleAccent}</span>
               </h1>
               <p className="text-lg text-graphite-muted max-w-lg leading-relaxed mb-8">
                 {t.hero.subtitle}

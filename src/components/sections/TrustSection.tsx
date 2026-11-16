@@ -5,34 +5,50 @@ import { useInView } from "framer-motion";
 import { useLang } from "@/lib/i18n";
 import AnimatedSection from "@/components/AnimatedSection";
 
+/**
+ * Реальное значение (например, «15+») всегда есть в HTML: оно рендерится на сервере и остаётся в DOM.
+ * Счётчик — декоративный слой поверх (aria-hidden): пока он идёт, настоящее число скрыто
+ * через visibility, но продолжает задавать размер блока, поэтому вёрстка не прыгает.
+ */
 const CounterItem = ({ value, label }: { value: string; label: string }) => {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true });
-  const [count, setCount] = useState(0);
-  const numericValue = parseInt(value.replace(/\D/g, ""));
+  const target = parseInt(value.replace(/\D/g, ""), 10);
   const suffix = value.replace(/[0-9]/g, "");
+  // null — анимация не идёт, показывается только настоящее значение (так и на сервере).
+  const [count, setCount] = useState<number | null>(null);
 
   useEffect(() => {
-    if (!isInView) return;
-    let start = 0;
+    if (!isInView || Number.isNaN(target)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
     const duration = 2000;
-    const increment = numericValue / (duration / 16);
-    const timer = setInterval(() => {
-      start += increment;
-      if (start >= numericValue) {
-        setCount(numericValue);
-        clearInterval(timer);
+    const startedAt = performance.now();
+    let frame = 0;
+    const tick = (now: number) => {
+      const progress = Math.min((now - startedAt) / duration, 1);
+      if (progress < 1) {
+        setCount(Math.floor(target * progress));
+        frame = requestAnimationFrame(tick);
       } else {
-        setCount(Math.floor(start));
+        setCount(null);
       }
-    }, 16);
-    return () => clearInterval(timer);
-  }, [isInView, numericValue]);
+    };
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [isInView, target]);
+
+  const animating = count !== null;
 
   return (
     <div ref={ref} className="text-center">
-      <div className="text-4xl md:text-5xl font-heading font-bold gradient-steel-text mb-2">
-        {count}{suffix}
+      <div className="relative text-4xl md:text-5xl font-heading font-bold mb-2">
+        <div className={animating ? "gradient-steel-text invisible" : "gradient-steel-text"}>{value}</div>
+        {animating && (
+          <div aria-hidden="true" className="gradient-steel-text absolute inset-0">
+            {count}{suffix}
+          </div>
+        )}
       </div>
       <div className="text-sm text-graphite-muted">{label}</div>
     </div>

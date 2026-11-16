@@ -9,13 +9,14 @@ import WhyChooseUs from "@/components/sections/WhyChooseUs";
 import CTASection from "@/components/sections/CTASection";
 import RequestForm from "@/components/sections/RequestForm";
 import PartnersSection from "@/components/sections/PartnersSection";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Алюминиевые профили в Ташкенте — Экструзия на заказ",
   description:
     "AKFA INNOVATION / BENKAM — производство алюминиевых профилей в Ташкенте, Узбекистан. Экструзия на заказ, фасадные, конструкционные, транспортные профили. ISO 9001. Экспорт в 30+ стран.",
-  alternates: { canonical: "/" },
-};
+  path: "/",
+});
 
 export default function IndexPage() {
   return (

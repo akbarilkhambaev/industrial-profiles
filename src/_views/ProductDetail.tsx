@@ -5,7 +5,6 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { useLang } from "@/lib/i18n";
 import { products } from "@/lib/products";
-import { usePageMeta } from "@/hooks/use-page-meta";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import AnimatedSection from "@/components/AnimatedSection";
@@ -20,33 +19,6 @@ const ProductDetail = () => {
   const [activeImage, setActiveImage] = useState(0);
 
   const category = product ? t.products.categories[productIndex] : null;
-
-  usePageMeta({
-    title: category ? `${category.title} — Алюминиевый профиль, Ташкент` : "Продукт не найден",
-    description: category
-      ? `${category.description} Сплав: ${product!.alloy}. Допуск: ${product!.tolerance}. Производство в Узбекистане, экспорт по всему миру.`
-      : "Продукт не найден.",
-    canonical: product ? `/products/${product.id}` : "/products",
-    jsonLd: category && product ? {
-      "@context": "https://schema.org",
-      "@type": "Product",
-      "name": category.title,
-      "description": category.description,
-      "brand": { "@type": "Brand", "name": "AKFA INNOVATION / BENKAM" },
-      "manufacturer": {
-        "@type": "Organization",
-        "name": "BENKAM",
-        "address": { "@type": "PostalAddress", "addressCountry": "UZ", "addressLocality": "Навои" }
-      },
-      "material": product.alloy,
-      "url": `https://akfainnovation.uz/products/${product.id}`,
-      "offers": {
-        "@type": "Offer",
-        "availability": "https://schema.org/InStock",
-        "seller": { "@type": "Organization", "name": "AKFA INNOVATION" }
-      }
-    } : undefined,
-  });
 
   if (!product) {
     return (

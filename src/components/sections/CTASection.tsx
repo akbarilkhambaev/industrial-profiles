@@ -11,11 +11,9 @@ const CTASection = () => {
       <div className="absolute inset-0 bg-gradient-to-r from-graphite via-graphite/95 to-graphite" />
       <div className="container mx-auto px-4 lg:px-8 relative z-10 text-center">
         <AnimatedSection>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-graphite-foreground mb-2">
-            {t.cta.title}
-          </h2>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-primary mb-8">
-            {t.cta.titleAccent}
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-graphite-foreground mb-8">
+            {t.cta.title}{" "}
+            <span className="block mt-2 text-primary">{t.cta.titleAccent}</span>
           </h2>
           <div className="flex flex-wrap justify-center gap-4">
             <a
